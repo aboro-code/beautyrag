@@ -5,6 +5,7 @@ from sqlalchemy import text
 
 from app.cache import redis_client
 from app.db import engine
+from app.routers.search import router as search_router
 
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="BeautyRAG", lifespan=lifespan)
+app.include_router(search_router)
 
 
 @app.get("/health")
