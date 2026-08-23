@@ -134,6 +134,17 @@ docker run -p 8000:8000 --env-file .env beautyrag
 python -m eval.run_eval
 ```
 
+**Run the Streamlit UI** (needs the API running separately, per above):
+```bash
+streamlit run streamlit_app.py
+```
+A chat box for `/ask`, a search box exposing all three retrieval modes, and a
+similar-products lookup, each rendering results as product cards. The API base URL
+is configurable in the sidebar, so the same UI works against a local or deployed
+backend. Verified with Streamlit's own headless `AppTest` framework (all three tabs,
+against a live local API) since no browser was available in the dev environment this
+was built in.
+
 ## Retrieval evaluation (18 hand-labeled queries)
 
 <!-- EVAL_TABLE_START -->
