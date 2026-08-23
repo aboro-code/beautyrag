@@ -1,2 +1,6 @@
-streamlit==1.39.0
-requests==2.32.3
+# Unpinned deliberately: Streamlit Community Cloud's runtime tracks a very recent
+# Python (3.14 as of writing), and older pinned versions here have transitive deps
+# (e.g. streamlit 1.39.0 -> pillow 10.4.0) with no prebuilt wheel for it, which fail
+# building from source. Let pip/uv resolve to whatever's current and compatible.
+streamlit
+requests
