@@ -29,3 +29,9 @@ class AskResponse(BaseModel):
     answer: str
     cited_product_ids: list[str]
     latency_ms: float
+
+
+class RecommendResponse(BaseModel):
+    product_id: str
+    results: list[ProductResult]
+    latency_ms: float

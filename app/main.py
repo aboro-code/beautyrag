@@ -6,6 +6,7 @@ from sqlalchemy import text
 from app.cache import redis_client
 from app.db import engine
 from app.routers.ask import router as ask_router
+from app.routers.recommend import router as recommend_router
 from app.routers.search import router as search_router
 
 
@@ -19,6 +20,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="BeautyRAG", lifespan=lifespan)
 app.include_router(search_router)
 app.include_router(ask_router)
+app.include_router(recommend_router)
 
 
 @app.get("/health")
