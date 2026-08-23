@@ -134,9 +134,12 @@ docker run -p 8000:8000 --env-file .env beautyrag
 python -m eval.run_eval
 ```
 
-**Run the Streamlit UI** (needs the API running separately, per above):
+**Run the Streamlit UI** (needs the API running separately, per above). It lives in
+`ui/` with its own minimal `requirements.txt` (just `streamlit` + `requests`) so
+deploying it doesn't drag in the backend's heavier dependencies (asyncpg, torch, ...):
 ```bash
-streamlit run streamlit_app.py
+pip install -r ui/requirements.txt
+streamlit run ui/streamlit_app.py
 ```
 A chat box for `/ask`, a search box exposing all three retrieval modes, and a
 similar-products lookup, each rendering results as product cards. The API base URL
