@@ -19,3 +19,13 @@ class SearchResponse(BaseModel):
     mode: Literal["vector", "keyword", "hybrid"]
     results: list[ProductResult]
     latency_ms: float
+
+
+class AskRequest(BaseModel):
+    question: str
+
+
+class AskResponse(BaseModel):
+    answer: str
+    cited_product_ids: list[str]
+    latency_ms: float
