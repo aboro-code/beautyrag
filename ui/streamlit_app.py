@@ -21,6 +21,20 @@ with st.sidebar:
     st.caption("Hybrid search + grounded RAG over a Sephora skincare/beauty catalog.")
 
 
+def show_request_error(e: requests.RequestException) -> None:
+    """Render a request failure -- with a specific hint for the timeout case, since
+    Render's free tier spins its instance down after 15 minutes idle and can take
+    30-60s to wake back up on the next request, well past a naive short timeout."""
+    if isinstance(e, requests.exceptions.Timeout):
+        st.error(
+            "Request timed out. The free-tier API spins down after 15 minutes of "
+            "inactivity and can take up to a minute to wake back up on the first "
+            "request after that -- try again in a few seconds."
+        )
+    else:
+        st.error(f"Request failed: {e}")
+
+
 def product_card(product: dict) -> None:
     price = f"${product['price_usd']:.2f}" if product.get("price_usd") is not None else "—"
     rating = f"{product['rating']:.2f}★ ({product.get('reviews_count') or 0})" if product.get("rating") is not None else "No rating"
@@ -41,7 +55,7 @@ with ask_tab:
     if st.button("Ask", type="primary") and question:
         with st.spinner("Retrieving + generating..."):
             try:
-                resp = requests.post(f"{base_url}/ask", json={"question": question}, timeout=30)
+                resp = requests.post(f"{base_url}/ask", json={"question": question}, timeout=60)
                 resp.raise_for_status()
                 data = resp.json()
                 st.markdown(data["answer"])
@@ -49,7 +63,7 @@ with ask_tab:
                     st.caption("Cited: " + ", ".join(data["cited_product_ids"]))
                 st.caption(f"{data['latency_ms']:.0f}ms" + (" (cached)" if data.get("cached") else ""))
             except requests.RequestException as e:
-                st.error(f"Request failed: {e}")
+                show_request_error(e)
 
 with search_tab:
     st.subheader("Search the catalog")
@@ -62,7 +76,7 @@ with search_tab:
         with st.spinner("Searching..."):
             try:
                 resp = requests.get(
-                    f"{base_url}/search", params={"q": query, "mode": mode, "limit": limit}, timeout=15
+                    f"{base_url}/search", params={"q": query, "mode": mode, "limit": limit}, timeout=60
                 )
                 resp.raise_for_status()
                 data = resp.json()
@@ -70,7 +84,7 @@ with search_tab:
                 for product in data["results"]:
                     product_card(product)
             except requests.RequestException as e:
-                st.error(f"Request failed: {e}")
+                show_request_error(e)
 
 with recommend_tab:
     st.subheader("Find similar products")
@@ -78,7 +92,7 @@ with recommend_tab:
     if st.button("Recommend", type="primary") and product_id:
         with st.spinner("Looking up similar products..."):
             try:
-                resp = requests.get(f"{base_url}/recommend/{product_id}", timeout=15)
+                resp = requests.get(f"{base_url}/recommend/{product_id}", timeout=60)
                 if resp.status_code == 404:
                     st.warning(f"Product '{product_id}' not found in the catalog.")
                 else:
@@ -87,4 +101,4 @@ with recommend_tab:
                     for product in data["results"]:
                         product_card(product)
             except requests.RequestException as e:
-                st.error(f"Request failed: {e}")
+                show_request_error(e)
