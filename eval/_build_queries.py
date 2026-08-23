@@ -65,7 +65,7 @@ MAX_RELEVANT_PER_QUERY = 25
 
 async def main() -> None:
     dsn = settings.database_url.replace("postgresql+asyncpg://", "postgresql://")
-    conn = await asyncpg.connect(dsn)
+    conn = await asyncpg.connect(dsn, statement_cache_size=0)
 
     print("LABELED_QUERIES = [")
     for query_text, where_clause in QUERIES:

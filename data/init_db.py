@@ -12,7 +12,7 @@ async def main() -> None:
     dsn = settings.database_url.replace("postgresql+asyncpg://", "postgresql://")
     schema_sql = (Path(__file__).parent / "schema.sql").read_text()
 
-    conn = await asyncpg.connect(dsn)
+    conn = await asyncpg.connect(dsn, statement_cache_size=0)
     try:
         await conn.execute(schema_sql)
         print("Schema applied successfully.")

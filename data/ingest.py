@@ -186,7 +186,7 @@ async def main(limit: int | None) -> None:
     model = SentenceTransformer(settings.embedding_model_name)
 
     dsn = settings.database_url.replace("postgresql+asyncpg://", "postgresql://")
-    conn = await asyncpg.connect(dsn)
+    conn = await asyncpg.connect(dsn, statement_cache_size=0)
     await register_vector(conn)
     try:
         await insert_products(conn, products_df, model)
