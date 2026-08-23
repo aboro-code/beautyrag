@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "BeautyRAG",
+    "description": "Hybrid Search & RAG Shopping Assistant API. Set the `base_url` collection variable to your running instance (default: local dev server).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000" },
+    { "key": "product_id", "value": "P455368", "description": "A real product_id from the ingested catalog, used by /recommend" }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{base_url}}/health", "host": ["{{base_url}}"], "path": ["health"] }
+      }
+    },
+    {
+      "name": "Search - hybrid",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/search?q=lightweight moisturizer for oily skin&mode=hybrid&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["search"],
+          "query": [
+            { "key": "q", "value": "lightweight moisturizer for oily skin" },
+            { "key": "mode", "value": "hybrid" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - vector only",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/search?q=lightweight moisturizer for oily skin&mode=vector&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["search"],
+          "query": [
+            { "key": "q", "value": "lightweight moisturizer for oily skin" },
+            { "key": "mode", "value": "vector" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search - keyword only",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/search?q=lightweight moisturizer for oily skin&mode=keyword&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["search"],
+          "query": [
+            { "key": "q", "value": "lightweight moisturizer for oily skin" },
+            { "key": "mode", "value": "keyword" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ask - grounded question",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/ask", "host": ["{{base_url}}"], "path": ["ask"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What is a good vitamin C serum for brightening skin?\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Ask - out-of-domain (refusal guardrail)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{base_url}}/ask", "host": ["{{base_url}}"], "path": ["ask"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What is the best gaming laptop under $1000?\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Recommend similar products",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/recommend/{{product_id}}?limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["recommend", "{{product_id}}"],
+          "query": [{ "key": "limit", "value": "10" }]
+        }
+      }
+    }
+  ]
+}

@@ -90,6 +90,11 @@ one route that calls an external LLM).
 Content-based "similar products": catalog neighbors by embedding cosine similarity,
 re-ranked with a small rating boost. Returns 404 for an unknown `product_id`.
 
+### Postman collection
+[`postman/BeautyRAG.postman_collection.json`](postman/BeautyRAG.postman_collection.json)
+covers every endpoint above, including the `/ask` refusal guardrail. Import it into
+Postman and set the `base_url` collection variable to your running instance.
+
 ## Running it
 
 **Prerequisites:** Python 3.12 (3.14 will fail — `pydantic-core`/`asyncpg` don't have
