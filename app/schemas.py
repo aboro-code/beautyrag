@@ -29,6 +29,7 @@ class AskResponse(BaseModel):
     answer: str
     cited_product_ids: list[str]
     latency_ms: float
+    cached: bool = False
 
 
 class RecommendResponse(BaseModel):

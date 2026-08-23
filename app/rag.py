@@ -1,4 +1,3 @@
-import re
 import time
 
 import httpx
@@ -13,8 +12,6 @@ from app.search import hybrid_search
 RETRIEVAL_LIMIT = 5
 REVIEWS_PER_PRODUCT = 2
 REVIEW_SNIPPET_CHARS = 300
-
-CITATION_RE = re.compile(r"\[(P\d+)\]")
 
 # Grounding is a hard requirement: the model must only draw on the retrieved
 # context and must say so rather than invent a product when nothing fits.
@@ -106,10 +103,11 @@ async def ask(session: AsyncSession, question: str) -> AskResponse:
 
     answer = await _call_groq(context, question)
 
-    # Only trust citations the model actually emitted for products we actually
-    # retrieved -- this is what keeps cited_product_ids grounded rather than a
-    # rubber-stamp of everything that was fetched.
-    retrieved_ids = {r.product_id for r in results}
-    cited_ids = [pid for pid in dict.fromkeys(CITATION_RE.findall(answer)) if pid in retrieved_ids]
+    # Only trust products the model actually mentioned by ID somewhere in its
+    # answer -- this is what keeps cited_product_ids grounded rather than a
+    # rubber-stamp of everything that was fetched. Matched as a plain substring
+    # (not a strict "[Pxxxx]" regex) since the model doesn't always follow the
+    # requested bracket format exactly.
+    cited_ids = [r.product_id for r in results if r.product_id in answer]
 
     return AskResponse(answer=answer, cited_product_ids=cited_ids, latency_ms=(time.perf_counter() - start) * 1000)
