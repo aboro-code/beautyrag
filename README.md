@@ -6,6 +6,11 @@ search** — pgvector cosine similarity fused with Postgres full-text search via
 Reciprocal Rank Fusion (RRF) — plus a grounded RAG endpoint with an anti-hallucination
 guardrail, content-based recommendations, and Redis-backed caching/rate limiting.
 
+**Live demo:** API on Render — https://beautyrag-pml6.onrender.com/docs · UI on
+Streamlit Community Cloud — https://beautyrag-gpbljutbwqbk57rz2zcyp7.streamlit.app
+(free-tier hosting, so the API cold-starts after 15 minutes idle — give it ~30-50s on
+the first request).
+
 ## Architecture
 
 ```mermaid
@@ -170,6 +175,58 @@ targeted category/keyword filters against the catalog (see `eval/queries.py` and
 Identical `/ask` questions are served from Redis instead of re-calling Groq:
 **~6,400ms cold → ~23ms cached** (~280x) in manual testing, on a 300s TTL keyed to
 the normalized question text.
+
+## Deploying to free-tier hosting: what broke and why
+
+The API is deployed to Render's free web service tier (750 hrs/month, no card
+required) and the UI to Streamlit Community Cloud — both genuinely free, but neither
+is a drop-in target for a `torch`-dependent async backend. Three separate issues
+showed up, each with a distinct root cause:
+
+**1. Out-of-memory before the app even opened a port.** Render's free tier caps a
+service at 512MB RAM. The default PyPI `torch` wheel bundles CUDA libraries that
+aren't needed for CPU-only inference, and just importing `sentence-transformers`
+(which imports `torch`) pushed memory well past 512MB — the container was OOM-killed
+during startup, before Uvicorn ever bound to a port. Fix: install the CPU-only torch
+build explicitly in the Dockerfile —
+```dockerfile
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+```
+— which drops the image's memory footprint enough to fit comfortably.
+
+**2. Database unreachable despite a correct connection string.** Supabase's direct
+connection host (`db.<ref>.supabase.co`) resolves to an IPv6 address only in most
+regions now, and Render's free tier has no outbound IPv6 route. `/health` reported
+`database: false` with no useful error beyond a connection timeout. Fix: switch to
+Supabase's connection pooler host (`aws-0-<region>.pooler.supabase.com`), which is
+IPv4-reachable.
+
+**3. Prepared-statement errors under real traffic, only after switching to the
+pooler.** Once on the pooler, `/search` intermittently threw
+`asyncpg.exceptions.DuplicatePreparedStatementError`. Root cause: Supabase's pooler
+runs in transaction mode, multiplexing client connections across a shared pool of
+backend Postgres sessions. asyncpg names each prepared statement with a plain
+per-connection counter (`__asyncpg_stmt_1__`, `_2__`, ...) that restarts at 1 for
+every new connection — so two concurrent requests (in practice, Render's own
+health-check polling overlapping a real request) could each try to prepare
+`__asyncpg_stmt_1__` on the same backend session and collide. Fixed with three
+changes together in `app/db.py`: `statement_cache_size=0` (disable asyncpg's own
+statement cache, which isn't valid across a pooled connection anyway), `NullPool`
+(stop SQLAlchemy from *also* pooling connections on top of the pooler), and a
+UUID-based `prepared_statement_name_func` so statement names are globally unique
+regardless of how the pooler multiplexes underneath. Verified by firing 8 concurrent
+search requests locally before and after — reproduced the collision, then confirmed
+it was gone.
+
+**4. Streamlit Cloud installing the wrong dependencies entirely.** Streamlit
+Community Cloud installs whatever `requirements.txt` sits next to the main module —
+with `streamlit_app.py` originally at the repo root, that meant installing the
+*entire backend's* dependency set (`asyncpg`, `torch`, `sentence-transformers`, ...)
+just to run a thin UI that only needs `streamlit` and `requests`. It also broke the
+deploy outright: Streamlit Cloud's Python 3.14 runtime has no prebuilt wheel for
+`asyncpg`, and building it from source fails against 3.14's changed C API. Fixed by
+moving the app to `ui/streamlit_app.py` with its own minimal `ui/requirements.txt`,
+so Streamlit Cloud only installs what the UI actually needs.
 
 ## Future improvements
 
