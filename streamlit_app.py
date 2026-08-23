@@ -4,14 +4,20 @@ a search box exposing all three retrieval modes, and a similar-products lookup.
 Run: streamlit run streamlit_app.py
 """
 
+import os
+
 import requests
 import streamlit as st
 
 st.set_page_config(page_title="BeautyRAG", page_icon="✨", layout="wide")
 
+# Defaults to the deployed API when API_BASE_URL is set (e.g. via Streamlit Cloud
+# secrets), otherwise assumes a local backend -- either way it's editable below.
+DEFAULT_BASE_URL = os.environ.get("API_BASE_URL", "http://127.0.0.1:8000")
+
 with st.sidebar:
     st.title("BeautyRAG")
-    base_url = st.text_input("API base URL", value="http://127.0.0.1:8000").rstrip("/")
+    base_url = st.text_input("API base URL", value=DEFAULT_BASE_URL).rstrip("/")
     st.caption("Hybrid search + grounded RAG over a Sephora skincare/beauty catalog.")
 
 
