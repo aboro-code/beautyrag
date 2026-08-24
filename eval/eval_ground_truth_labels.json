@@ -1,0 +1,2284 @@
+{
+  "methodology_note": "Ground truth was constructed in two independent stages to avoid the self-grading problem: (1) candidate shortlisting via mechanical SQL/ILIKE filtering on explicit, literal constraints in each query -- no embeddings, no ranking, no LLM judgment, run by Claude Code against the products table; (2) relevance judged by hand, query by query, applying a consistent 'genuine functional match' standard (e.g. a gel-cream counts as a moisturizer even without the word 'moisturizer' in its name; a face oil, toner, essence, or serum does not count as a moisturizer even if it technically carries the moisturizer category tag; a product bundle/kit/set does not count as a single product match; SPF alone does not disqualify a moisturizer; 'under $X' is strict, 'X or higher' is inclusive). Eight of the twenty queries (1, 7, 9, 14, 16, 18, 19, 20) are excluded from the quantitative Precision/Recall/MRR table because no meaningful, non-arbitrary candidate set could be established for them -- see excluded_queries below for the specific reason per query. This is itself a documented, intentional part of the eval design, not a gap.",
+  "labeled_queries": {
+    "2": {
+      "query_text": "moisturizer with hyaluronic acid and niacinamide",
+      "relevant_product_ids": [
+        "P481952",
+        "P481739",
+        "P501577",
+        "P467249",
+        "P476485",
+        "P467250",
+        "P476496",
+        "P481086",
+        "P480166",
+        "P504240",
+        "P479327",
+        "P500138",
+        "P475195",
+        "P479339",
+        "P454019"
+      ],
+      "not_relevant_product_ids": [
+        "P411393",
+        "P433435",
+        "P500894",
+        "P473001",
+        "P473000",
+        "P483679"
+      ],
+      "labels_by_product": {
+        "P481952": {
+          "product_name": "Aqua Bomb Hydrating Body Moisturizer with Niacinamide and Hyaluronic Acid",
+          "relevant": "y"
+        },
+        "P481739": {
+          "product_name": "Barrier+ Skin Barrier Niacinamide Restoring Gel Cream",
+          "relevant": "y"
+        },
+        "P411393": {
+          "product_name": "Bye Bye Redness Neutralizing Color-Correcting Cream",
+          "relevant": "n"
+        },
+        "P433435": {
+          "product_name": "CC+ Cream Oil-Free Matte with SPF 40",
+          "relevant": "n"
+        },
+        "P501577": {
+          "product_name": "Deepwater Hydrating & Soothing Body Crème with Sea Moss & Niacinamide",
+          "relevant": "y"
+        },
+        "P500894": {
+          "product_name": "Fat Water Hydrating Milky Toner Essence with Hyaluronic Acid + Tamarind",
+          "relevant": "n"
+        },
+        "P467249": {
+          "product_name": "Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen with Niacinamide + Kalahari Melon",
+          "relevant": "y"
+        },
+        "P476485": {
+          "product_name": "Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen with Niacinamide Refill",
+          "relevant": "y"
+        },
+        "P467250": {
+          "product_name": "Instant Reset Brightening Overnight Recovery Gel-Cream With Niacinamide + Kalahari Melon Oil",
+          "relevant": "y"
+        },
+        "P476496": {
+          "product_name": "Instant Reset Brightening Overnight Recovery Gel-Cream with Niacinamide Refill",
+          "relevant": "y"
+        },
+        "P481086": {
+          "product_name": "Liftwear Brightening Vitamin C Gel-Cream",
+          "relevant": "y"
+        },
+        "P480166": {
+          "product_name": "Mini Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen with Niacinamide",
+          "relevant": "y"
+        },
+        "P504240": {
+          "product_name": "Mini Instant Reset Brightening Overnight Recovery Gel-Cream With Niacinamide + Kalahari Melon Oil",
+          "relevant": "y"
+        },
+        "P473001": {
+          "product_name": "Mini SEA Hydroflex Serum Foundation",
+          "relevant": "n"
+        },
+        "P479327": {
+          "product_name": "Plum Plump Hyaluronic Acid Moisturizer",
+          "relevant": "y"
+        },
+        "P500138": {
+          "product_name": "Polypeptide-121 Future Cream with Peptides and Ceramides",
+          "relevant": "y"
+        },
+        "P475195": {
+          "product_name": "Protect + Plump Firming & Hydrating Face Moisturizer",
+          "relevant": "y"
+        },
+        "P473000": {
+          "product_name": "SEA Hydroflex Serum Foundation",
+          "relevant": "n"
+        },
+        "P479339": {
+          "product_name": "Strength Trainer Peptide Boost Moisturizer",
+          "relevant": "y"
+        },
+        "P454019": {
+          "product_name": "Teatreement Moisturizer",
+          "relevant": "y"
+        },
+        "P483679": {
+          "product_name": "Truth Barrier Booster Orange Ferment Vitamin C Essence",
+          "relevant": "n"
+        }
+      }
+    },
+    "3": {
+      "query_text": "vitamin C serum under $20",
+      "relevant_product_ids": ["P455368", "P427410", "P427409"],
+      "not_relevant_product_ids": ["P442594", "P443841"],
+      "labels_by_product": {
+        "P455368": {
+          "product_name": "15% Vitamin C and EGF Brightening Serum",
+          "relevant": "y"
+        },
+        "P442594": {
+          "product_name": "Ultra Glow Serum: Glow + Strengthen Vitamin C Serum",
+          "relevant": "n"
+        },
+        "P443841": {
+          "product_name": "Vitamin C Brightening Cream",
+          "relevant": "n"
+        },
+        "P427410": {
+          "product_name": "Vitamin C Suspension 23% + HA Spheres 2%",
+          "relevant": "y"
+        },
+        "P427409": {
+          "product_name": "Vitamin C Suspension 30% in Silicone",
+          "relevant": "y"
+        }
+      }
+    },
+    "4": {
+      "query_text": "gentle cleanser for sensitive, rosacea-prone skin",
+      "relevant_product_ids": [
+        "P436359",
+        "P431187",
+        "P217932",
+        "P476726",
+        "P474371",
+        "P500614",
+        "P450632",
+        "P450633",
+        "P232902",
+        "P471784",
+        "P416312",
+        "P504322",
+        "P483696",
+        "P296413",
+        "P469449",
+        "P454315",
+        "P504524",
+        "P468684",
+        "P505379",
+        "P94812",
+        "P469448",
+        "P7880",
+        "P474304",
+        "P480346",
+        "P470506",
+        "P427536",
+        "P469527",
+        "P469444",
+        "P470007"
+      ],
+      "not_relevant_product_ids": [
+        "P460723",
+        "P6028",
+        "P504861",
+        "P470221",
+        "P505381",
+        "P450262"
+      ],
+      "labels_by_product": {
+        "P436359": {
+          "product_name": "Blueberry Bounce Gentle Cleanser",
+          "relevant": "y"
+        },
+        "P431187": {
+          "product_name": "Clean Bee Ultra Gentle Facial Cleanser",
+          "relevant": "y"
+        },
+        "P460723": {
+          "product_name": "Clean Cleansing & Gentle Exfoliating Wipes",
+          "relevant": "n"
+        },
+        "P217932": {
+          "product_name": "Crème Radiance Gentle Cleansing Creamy-Foam Cleanser",
+          "relevant": "y"
+        },
+        "P476726": {
+          "product_name": "Evercalm Gentle Cleansing Gel",
+          "relevant": "y"
+        },
+        "P474371": {
+          "product_name": "Evercalm Gentle Cleansing Milk",
+          "relevant": "y"
+        },
+        "P500614": {
+          "product_name": "Gentle Brightening Gel Cleanser with Mandelic Acid",
+          "relevant": "y"
+        },
+        "P6028": {
+          "product_name": "Gentle Buffing Cream",
+          "relevant": "n"
+        },
+        "P450632": {
+          "product_name": "Gentle Cleansing Foam Hydrating Makeup Remover",
+          "relevant": "y"
+        },
+        "P450633": {
+          "product_name": "Gentle Cleansing Oil Makeup Remover",
+          "relevant": "y"
+        },
+        "P232902": {
+          "product_name": "Gentle Daily Wash",
+          "relevant": "y"
+        },
+        "P504861": {
+          "product_name": "Gentle Eye Gel Waterproof Eye & Lip Makeup Remover",
+          "relevant": "n"
+        },
+        "P471784": {
+          "product_name": "Gentle Foaming Cleanser",
+          "relevant": "y"
+        },
+        "P416312": {
+          "product_name": "Gentle Foaming Face Wash",
+          "relevant": "y"
+        },
+        "P504322": {
+          "product_name": "Gentle Hydra-Gel Face Cleanser",
+          "relevant": "y"
+        },
+        "P483696": {
+          "product_name": "Gentle Micellar Antioxidant Cleanser",
+          "relevant": "y"
+        },
+        "P296413": {
+          "product_name": "Gentle Rejuvenating Cleanser",
+          "relevant": "y"
+        },
+        "P469449": {
+          "product_name": "Hydrating Gentle Foaming Cleanser with Aloe Vera",
+          "relevant": "y"
+        },
+        "P454315": {
+          "product_name": "Milk Cleanse Gentle Foaming Cleanser",
+          "relevant": "y"
+        },
+        "P470221": {
+          "product_name": "Milk-Peel Gentle Exfoliating Toner",
+          "relevant": "n"
+        },
+        "P504524": {
+          "product_name": "Milky Jelly Gentle Gel Face Cleanser",
+          "relevant": "y"
+        },
+        "P468684": {
+          "product_name": "Milky Mushroom Gentle Cleansing Oil Makeup Remover",
+          "relevant": "y"
+        },
+        "P505381": {
+          "product_name": "Multi Action Clear Gentle Daily Brightening & Retexturizing Toner for Acne and Breakouts",
+          "relevant": "n"
+        },
+        "P505379": {
+          "product_name": "Multi Action Clear Gentle Daily Clarifying Cleanser for Acne and Breakouts",
+          "relevant": "y"
+        },
+        "P94812": {
+          "product_name": "One-Step Gentle Exfoliating Cleanser with Orange Extract",
+          "relevant": "y"
+        },
+        "P450262": {
+          "product_name": "Polyhydroxy Acid (PHA) Gentle Exfoliating Toner",
+          "relevant": "n"
+        },
+        "P469448": {
+          "product_name": "Purifying Gentle Foaming Cleanser with Salicylic Acid",
+          "relevant": "y"
+        },
+        "P7880": {
+          "product_name": "Soy Hydrating Gentle Face Cleanser",
+          "relevant": "y"
+        },
+        "P474304": {
+          "product_name": "Squalane + Amino Aloe Gentle Pore-Minimizing Cleanser",
+          "relevant": "y"
+        },
+        "P480346": {
+          "product_name": "SuperFruit Gentle Brightening Cleanser",
+          "relevant": "y"
+        },
+        "P470506": {
+          "product_name": "The Cream Cleansing Gel with TFC8 Gentle Cleanser",
+          "relevant": "y"
+        },
+        "P427536": {
+          "product_name": "The Deep Cleanse Gentle Exfoliating Cleanser",
+          "relevant": "y"
+        },
+        "P469527": {
+          "product_name": "The UnScrub Gentle Cleansing Scrub",
+          "relevant": "y"
+        },
+        "P469444": {
+          "product_name": "Vinoclean Gentle Cleansing Almond Milk",
+          "relevant": "y"
+        },
+        "P470007": {
+          "product_name": "Vinoclean Gentle Foam Cleanser",
+          "relevant": "y"
+        }
+      }
+    },
+    "5": {
+      "query_text": "fragrance-free daily sunscreen SPF 30 or higher",
+      "relevant_product_ids": [
+        "P500399",
+        "P470217",
+        "P500256",
+        "P483658",
+        "P482747",
+        "P469524",
+        "P456410"
+      ],
+      "not_relevant_product_ids": [],
+      "labels_by_product": {
+        "P500399": {
+          "product_name": "Isle Glow Body Lotion SPF 45 with Sea Moss and Cocoa Seed Butter",
+          "relevant": "y"
+        },
+        "P470217": {
+          "product_name": "Liquid Sun Shield Daily Brightening Mineral Sunscreen SPF 50",
+          "relevant": "y"
+        },
+        "P500256": {
+          "product_name": "Mineral Sunscreen SPF 30",
+          "relevant": "y"
+        },
+        "P483658": {
+          "product_name": "Mineral Sunscreen Zinc Oxide Broad Spectrum SPF 30",
+          "relevant": "y"
+        },
+        "P482747": {
+          "product_name": "PLAY Mineral Mist SPF 30 with Marigold Extract",
+          "relevant": "y"
+        },
+        "P469524": {
+          "product_name": "RESIST Super-Light Daily Wrinkle Defense SPF 30",
+          "relevant": "y"
+        },
+        "P456410": {
+          "product_name": "Squalane + Zinc Sheer Mineral Sunscreen SPF 30 PA +++",
+          "relevant": "y"
+        }
+      }
+    },
+    "6": {
+      "query_text": "lightweight, non-comedogenic moisturizer for oily acne-prone skin under 1500 rupees",
+      "relevant_product_ids": [],
+      "not_relevant_product_ids": ["P479904", "P448853", "P443834", "P448852"],
+      "labels_by_product": {
+        "P479904": {
+          "product_name": "Mini Lapis Blue Tansy Face Oil - For Oily & Acne-Prone Skin",
+          "relevant": "n"
+        },
+        "P448853": {
+          "product_name": "Mini SOS Daily Rescue Facial Spray",
+          "relevant": "n"
+        },
+        "P443834": {
+          "product_name": "Rosehip Nourishing Night Oil",
+          "relevant": "n"
+        },
+        "P448852": {
+          "product_name": "SOS Daily Rescue Facial Spray",
+          "relevant": "n"
+        }
+      }
+    },
+    "8": {
+      "query_text": "moisturizer without parabens or sulfates",
+      "relevant_product_ids": [
+        "P39675",
+        "P482025",
+        "P423142",
+        "P502761",
+        "P476416",
+        "P66703",
+        "P464239",
+        "P448716",
+        "P448200",
+        "P448202",
+        "P448201",
+        "P173652",
+        "P475086",
+        "P481703",
+        "P481721",
+        "P476427",
+        "P430337",
+        "P454806",
+        "P481077",
+        "P375354",
+        "P467945",
+        "P427729",
+        "P462860",
+        "P480162",
+        "P501003",
+        "P409928",
+        "P439648",
+        "P448211",
+        "P411403",
+        "P480191",
+        "P421999",
+        "P422269",
+        "P416341",
+        "P474124",
+        "P482006",
+        "P383052",
+        "P482298",
+        "P482058",
+        "P122900",
+        "P381030",
+        "P476686",
+        "P483086",
+        "P483692",
+        "P483693",
+        "P9940",
+        "P504674",
+        "P392648",
+        "P430338",
+        "P429504",
+        "P475084",
+        "P501493",
+        "P457520",
+        "P439055",
+        "P503891",
+        "P502746",
+        "P444226",
+        "P475540",
+        "P463036",
+        "P414293",
+        "P460756",
+        "P442001",
+        "P270543",
+        "P268700",
+        "P387511",
+        "P443358",
+        "P454378",
+        "P440312",
+        "P433520",
+        "P479852",
+        "P483664",
+        "P503832",
+        "P435975",
+        "P427641",
+        "P483708",
+        "P472466",
+        "P474117",
+        "P503665",
+        "P468351",
+        "P469450",
+        "P406942",
+        "P440302",
+        "P481828",
+        "P474967",
+        "P474968",
+        "P427638",
+        "P446934",
+        "P464238",
+        "P475112",
+        "P201440",
+        "P477812",
+        "P453929",
+        "P481397",
+        "P471237",
+        "P406081",
+        "P474121",
+        "P238001",
+        "P500601",
+        "P443359",
+        "P500718",
+        "P500771",
+        "P505016",
+        "P472341",
+        "P476677",
+        "P454019",
+        "P501140",
+        "P500420",
+        "P429637",
+        "P421249",
+        "P417107",
+        "P482510",
+        "P474113",
+        "P476571",
+        "P422640",
+        "P422012",
+        "P421996",
+        "P470040",
+        "P468634",
+        "P270594"
+      ],
+      "not_relevant_product_ids": [
+        "P442757",
+        "P447596",
+        "P447597",
+        "P162554",
+        "P436757",
+        "P431158",
+        "P473822",
+        "P503931",
+        "P501139",
+        "P439643",
+        "P500248",
+        "P460513",
+        "P469833",
+        "P483694",
+        "P476678",
+        "P455909",
+        "P440484",
+        "P440483",
+        "P440482",
+        "P472472",
+        "P463425",
+        "P505509",
+        "P463424",
+        "P505493",
+        "P454050",
+        "P431164",
+        "P473845",
+        "P447753",
+        "P473846",
+        "P431166",
+        "P431167",
+        "P473847",
+        "P236605",
+        "P442851",
+        "P500012",
+        "P417241",
+        "P504073",
+        "P501144"
+      ],
+      "labels_by_product": {
+        "P442757": {
+          "product_name": "\"B\" Oil",
+          "relevant": "n"
+        },
+        "P39675": {
+          "product_name": "100 percent Pure Shea Butter",
+          "relevant": "y"
+        },
+        "P447596": {
+          "product_name": "100% Organic Cold-Pressed Moroccan Argan Oil",
+          "relevant": "n"
+        },
+        "P447597": {
+          "product_name": "100% Organic Virgin Chia Seed Oil",
+          "relevant": "n"
+        },
+        "P482025": {
+          "product_name": "Absolue Rich Cream Moisturizer",
+          "relevant": "y"
+        },
+        "P423142": {
+          "product_name": "Active Moist Moisturizer",
+          "relevant": "y"
+        },
+        "P502761": {
+          "product_name": "Advanced Génifique Night Cream with Triple Ceramide Complex",
+          "relevant": "y"
+        },
+        "P476416": {
+          "product_name": "AFRICAN Beauty Butter- Intensive Dry Skin Treatment",
+          "relevant": "y"
+        },
+        "P66703": {
+          "product_name": "Almond Milk Concentrate",
+          "relevant": "y"
+        },
+        "P162554": {
+          "product_name": "Almond Smoothing and Beautifying Supple Skin Oil",
+          "relevant": "n"
+        },
+        "P464239": {
+          "product_name": "Aloe Vera Blemish Soothing Moisturizer",
+          "relevant": "y"
+        },
+        "P436757": {
+          "product_name": "Angie Perfume Oil",
+          "relevant": "n"
+        },
+        "P448716": {
+          "product_name": "Anti-Aging Body Cream",
+          "relevant": "y"
+        },
+        "P431158": {
+          "product_name": "Antidris Cassis Perfume Oil",
+          "relevant": "n"
+        },
+        "P473822": {
+          "product_name": "Antidris Cassis Perfume Oil Rollerball",
+          "relevant": "n"
+        },
+        "P448200": {
+          "product_name": "Benefiance Wrinkle Smoothing Cream",
+          "relevant": "y"
+        },
+        "P448202": {
+          "product_name": "Benefiance Wrinkle Smoothing Cream Enriched",
+          "relevant": "y"
+        },
+        "P448201": {
+          "product_name": "Benefiance Wrinkle Smoothing Day Cream SPF 23",
+          "relevant": "y"
+        },
+        "P173652": {
+          "product_name": "Bio-Performance Advanced Super Revitalizing Cream",
+          "relevant": "y"
+        },
+        "P475086": {
+          "product_name": "BioLumin-C Vitamin-C Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P481703": {
+          "product_name": "Black Tea Corset Cream Firming Moisturizer",
+          "relevant": "y"
+        },
+        "P481721": {
+          "product_name": "Body Lotion Moisturizer",
+          "relevant": "y"
+        },
+        "P476427": {
+          "product_name": "Brazilian Touch Hand Cream",
+          "relevant": "y"
+        },
+        "P503931": {
+          "product_name": "Bum Bum Firmeza Firming & Debloating Body Oil",
+          "relevant": "n"
+        },
+        "P430337": {
+          "product_name": "C-Rush Vitamin C Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P501139": {
+          "product_name": "Calm the F*ck Down Body Oil",
+          "relevant": "n"
+        },
+        "P454806": {
+          "product_name": "Capture Totale Firming & Wrinkle-Correcting Cream",
+          "relevant": "y"
+        },
+        "P481077": {
+          "product_name": "Capture Totale Intensive Essence Lotion",
+          "relevant": "y"
+        },
+        "P375354": {
+          "product_name": "Capture Totale Intensive Night Restorative Crème",
+          "relevant": "y"
+        },
+        "P467945": {
+          "product_name": "Capture Totale Super Potent Rich Cream",
+          "relevant": "y"
+        },
+        "P427729": {
+          "product_name": "Capture Youth Age-Delay Advanced Crème",
+          "relevant": "y"
+        },
+        "P462860": {
+          "product_name": "Ceramidin Body Lotion",
+          "relevant": "y"
+        },
+        "P480162": {
+          "product_name": "Cica Recover & Repair Multi-Use Balm",
+          "relevant": "y"
+        },
+        "P501003": {
+          "product_name": "Clarifying Water Gel Moisturizer with Hyaluronic Acid",
+          "relevant": "y"
+        },
+        "P409928": {
+          "product_name": "Clean Break Oil-Free Moisturizer",
+          "relevant": "y"
+        },
+        "P439643": {
+          "product_name": "Clinique iD Custom-Blend Hydrator Collection",
+          "relevant": "n"
+        },
+        "P439648": {
+          "product_name": "Clinique iD:  Moisturizer + Concentrate for Pores & Uneven Texture",
+          "relevant": "y"
+        },
+        "P448211": {
+          "product_name": "Coco Cabana Intense Hydration Body Cream",
+          "relevant": "y"
+        },
+        "P500248": {
+          "product_name": "Collagen Superfusion Firming & Plumping Facial Oil",
+          "relevant": "n"
+        },
+        "P411403": {
+          "product_name": "Confidence in a Cream Anti-Aging Hydrating Moisturizer",
+          "relevant": "y"
+        },
+        "P480191": {
+          "product_name": "Contour Restore Tightening & Sculpting Moisturizing Face Cream",
+          "relevant": "y"
+        },
+        "P460513": {
+          "product_name": "Cream Skin Mist",
+          "relevant": "n"
+        },
+        "P421999": {
+          "product_name": "Crème de Corps Hydrating Body Lotion with Squalane",
+          "relevant": "y"
+        },
+        "P422269": {
+          "product_name": "Creme de Corps Soy Milk & Honey Whipped Body Butter",
+          "relevant": "y"
+        },
+        "P416341": {
+          "product_name": "Crème de la Mer Moisturizer",
+          "relevant": "y"
+        },
+        "P474124": {
+          "product_name": "Crepe Control  Tightening Body Cream",
+          "relevant": "y"
+        },
+        "P482006": {
+          "product_name": "Dewy Glow Moisturizer with Cherry Blossom & Niacinamide",
+          "relevant": "y"
+        },
+        "P383052": {
+          "product_name": "Do Not Age with Dr. Brandt Moisturizing Neck Cream",
+          "relevant": "y"
+        },
+        "P482298": {
+          "product_name": "Dr. Andrew Weil for Origins Mega-Mushroom Relief & Resilience Soothing Treatment Lotion",
+          "relevant": "y"
+        },
+        "P482058": {
+          "product_name": "Dr. Andrew Weil for Origins Mega-Mushroom Weightless Hydrating Moisturizer",
+          "relevant": "y"
+        },
+        "P122900": {
+          "product_name": "Dramatically Different Moisturizing Gel",
+          "relevant": "y"
+        },
+        "P381030": {
+          "product_name": "Dramatically Different Moisturizing Lotion+",
+          "relevant": "y"
+        },
+        "P476686": {
+          "product_name": "Equilibrium Restorative Hydrating Cream",
+          "relevant": "y"
+        },
+        "P469833": {
+          "product_name": "Equilibrium Restoring Essence",
+          "relevant": "n"
+        },
+        "P483086": {
+          "product_name": "Essential Comfort Balancing Emulsion",
+          "relevant": "y"
+        },
+        "P483694": {
+          "product_name": "Essential Comfort Balancing Water",
+          "relevant": "n"
+        },
+        "P483692": {
+          "product_name": "Essential Comfort Firming Cream",
+          "relevant": "y"
+        },
+        "P483693": {
+          "product_name": "Essential Comfort Moisture Cream",
+          "relevant": "y"
+        },
+        "P9940": {
+          "product_name": "Essential-C Day Moisture Broad Spectrum SPF 30 PA+++",
+          "relevant": "y"
+        },
+        "P504674": {
+          "product_name": "Even Better Brightening Moisturizer SPF 20",
+          "relevant": "y"
+        },
+        "P392648": {
+          "product_name": "Extra Illuminating Moisture Balm",
+          "relevant": "y"
+        },
+        "P430338": {
+          "product_name": "Extra-Firming & Smoothing Day Moisturizer with SPF 15",
+          "relevant": "y"
+        },
+        "P429504": {
+          "product_name": "Extra-Firming & Smoothing Night Moisturizer",
+          "relevant": "y"
+        },
+        "P475084": {
+          "product_name": "Extra-Firming Energy + Radiance Boosting Moisturizer",
+          "relevant": "y"
+        },
+        "P476678": {
+          "product_name": "Face Coach Lifting Squalane Face Oil",
+          "relevant": "n"
+        },
+        "P455909": {
+          "product_name": "Facial Spray with Aloe Sage & Orange Blossom",
+          "relevant": "n"
+        },
+        "P440484": {
+          "product_name": "Facial Spray with Aloe, Chamomile and Lavender",
+          "relevant": "n"
+        },
+        "P440483": {
+          "product_name": "Facial Spray with Aloe, Cucumber and Green Tea",
+          "relevant": "n"
+        },
+        "P440482": {
+          "product_name": "Facial Spray with Aloe, Herbs and Rosewater",
+          "relevant": "n"
+        },
+        "P472472": {
+          "product_name": "Ferulic Brew Facial Treatment Essence with Lactic Acid",
+          "relevant": "n"
+        },
+        "P501493": {
+          "product_name": "Firm + Flaunt Targeted Booty Balm",
+          "relevant": "y"
+        },
+        "P457520": {
+          "product_name": "FIRMx Collagen Moisturizer",
+          "relevant": "y"
+        },
+        "P439055": {
+          "product_name": "GENIUS Sleeping Collagen Moisturizer",
+          "relevant": "y"
+        },
+        "P503891": {
+          "product_name": "Green Tea Hyaluronic Acid Hydrating Moisturizer",
+          "relevant": "y"
+        },
+        "P502746": {
+          "product_name": "Hand Cream",
+          "relevant": "y"
+        },
+        "P444226": {
+          "product_name": "Honey Grail Ultra-Hydrating Face Oil",
+          "relevant": "y"
+        },
+        "P475540": {
+          "product_name": "Honey Halo Moisturizer Jumbo",
+          "relevant": "y"
+        },
+        "P463036": {
+          "product_name": "Honey Halo Ultra-Hydrating Ceramide Moisturizer",
+          "relevant": "y"
+        },
+        "P414293": {
+          "product_name": "Honey Savior All-in-One Skin Repair Salve",
+          "relevant": "y"
+        },
+        "P460756": {
+          "product_name": "Hyaluronic Dew Cream",
+          "relevant": "y"
+        },
+        "P442001": {
+          "product_name": "Hyaluronic Facial Cream",
+          "relevant": "y"
+        },
+        "P270543": {
+          "product_name": "Hydrating Face Cream Moisturizer",
+          "relevant": "y"
+        },
+        "P268700": {
+          "product_name": "Hydro-Dynamic Ultimate Moisture",
+          "relevant": "y"
+        },
+        "P387511": {
+          "product_name": "Immortelle Divine Cream",
+          "relevant": "y"
+        },
+        "P443358": {
+          "product_name": "Intensive Moisture Balance Moisturizer",
+          "relevant": "y"
+        },
+        "P463425": {
+          "product_name": "James Hydrating Body Oil",
+          "relevant": "n"
+        },
+        "P505509": {
+          "product_name": "Kombucha Antioxidant Facial Treatment Essence",
+          "relevant": "n"
+        },
+        "P463424": {
+          "product_name": "Leila Lou Hydrating Body Oil",
+          "relevant": "n"
+        },
+        "P454378": {
+          "product_name": "Lotus Anti- Aging Daily Moisturizer",
+          "relevant": "y"
+        },
+        "P440312": {
+          "product_name": "Lotus Anti-Aging Night Moisturizer",
+          "relevant": "y"
+        },
+        "P433520": {
+          "product_name": "Magic Cream Moisturizer with Hyaluronic Acid",
+          "relevant": "y"
+        },
+        "P479852": {
+          "product_name": "Melrose Place Moisturizing Body Cream",
+          "relevant": "y"
+        },
+        "P483664": {
+          "product_name": "Midnight  Recovery Omega-Rich Cloud Cream",
+          "relevant": "y"
+        },
+        "P503832": {
+          "product_name": "Mini AFRICAN Beauty Butter- Intensive Dry Skin Treatment",
+          "relevant": "y"
+        },
+        "P435975": {
+          "product_name": "Mini Charlotte's Magic Cream",
+          "relevant": "y"
+        },
+        "P427641": {
+          "product_name": "Mini Confidence in a Cream Hydrating Moisturizer",
+          "relevant": "y"
+        },
+        "P483708": {
+          "product_name": "Mini Essential Comfort Firming Cream",
+          "relevant": "y"
+        },
+        "P505493": {
+          "product_name": "Mini Kombucha Antioxidant Facial Treatment Essence",
+          "relevant": "n"
+        },
+        "P454050": {
+          "product_name": "Mini Major Glow Body Oil",
+          "relevant": "n"
+        },
+        "P472466": {
+          "product_name": "Mini Rose & Hyaluronic Acid Deep Hydration Moisturizer",
+          "relevant": "y"
+        },
+        "P474117": {
+          "product_name": "Mini TL Advanced  Tightening Neck Cream PLUS for Firming & Brightening",
+          "relevant": "y"
+        },
+        "P503665": {
+          "product_name": "Missing Person Body Lotion",
+          "relevant": "y"
+        },
+        "P468351": {
+          "product_name": "Moisture Surge 100H Auto-Replenishing Hydrator Moisturizer",
+          "relevant": "y"
+        },
+        "P469450": {
+          "product_name": "Moisture-Rich Hydrating Body Lotion",
+          "relevant": "y"
+        },
+        "P406942": {
+          "product_name": "Multi-Active Anti-Aging Night Moisturizer for Glowing Skin",
+          "relevant": "y"
+        },
+        "P440302": {
+          "product_name": "needles no more Neck Sculpting Cream",
+          "relevant": "y"
+        },
+        "P431164": {
+          "product_name": "No.02 Le Long Fond Perfume Oil",
+          "relevant": "n"
+        },
+        "P473845": {
+          "product_name": "No.02 Le Long Fond Perfume Oil Rollerball",
+          "relevant": "n"
+        },
+        "P447753": {
+          "product_name": "No.03 L'Etang Noir Perfume Oil",
+          "relevant": "n"
+        },
+        "P473846": {
+          "product_name": "No.03 L'Etang Noir Perfume Oil Rollerball",
+          "relevant": "n"
+        },
+        "P431166": {
+          "product_name": "No.05 Kandilli Perfume Oil",
+          "relevant": "n"
+        },
+        "P431167": {
+          "product_name": "No.09 Vallée de Farney Perfume Oil",
+          "relevant": "n"
+        },
+        "P473847": {
+          "product_name": "No.09 Vallée de Farney Perfume Oil Rollerball",
+          "relevant": "n"
+        },
+        "P481828": {
+          "product_name": "Nudescreen Daily Mineral Veil SPF 30",
+          "relevant": "y"
+        },
+        "P474967": {
+          "product_name": "NuFACE Firming and Brightening Silk Crème",
+          "relevant": "y"
+        },
+        "P474968": {
+          "product_name": "NuFACE Hydrating Aqua Gel",
+          "relevant": "y"
+        },
+        "P427638": {
+          "product_name": "Nutrient-Charged Water Gel",
+          "relevant": "y"
+        },
+        "P446934": {
+          "product_name": "Oil and Pore Control Mattifier Broad Spectrum SPF 45 PA++++",
+          "relevant": "y"
+        },
+        "P464238": {
+          "product_name": "Peptide + Ceramide Repairing Moisturizer",
+          "relevant": "y"
+        },
+        "P475112": {
+          "product_name": "Pore Clearing Matte Moisturizer with Volcanic Clusters",
+          "relevant": "y"
+        },
+        "P236605": {
+          "product_name": "Protein Booster Skin Serum",
+          "relevant": "n"
+        },
+        "P201440": {
+          "product_name": "Redness Solutions with Probiotic Technology Daily Relief Cream",
+          "relevant": "y"
+        },
+        "P477812": {
+          "product_name": "Refillable Jumbo Magic Cream Moisturizer with Hyaluronic Acid",
+          "relevant": "y"
+        },
+        "P442851": {
+          "product_name": "Remedy+ 911 Ointment",
+          "relevant": "n"
+        },
+        "P453929": {
+          "product_name": "Retinol Youth Renewal Night Cream",
+          "relevant": "y"
+        },
+        "P481397": {
+          "product_name": "Revitalizing Supreme+ Bright Soft Creme Moisturizer",
+          "relevant": "y"
+        },
+        "P471237": {
+          "product_name": "Rose & Hyaluronic Acid Deep Hydration Moisturizer",
+          "relevant": "y"
+        },
+        "P500012": {
+          "product_name": "Rose Hydration Pore-Minimizing Mist",
+          "relevant": "n"
+        },
+        "P406081": {
+          "product_name": "Samba 2-Step Foot Fetish Care",
+          "relevant": "y"
+        },
+        "P474121": {
+          "product_name": "SD Advanced  PLUS Intensive Moisturizer For Wrinkles & Stretch Marks",
+          "relevant": "y"
+        },
+        "P238001": {
+          "product_name": "Shea Butter Ultra Rich Body Cream",
+          "relevant": "y"
+        },
+        "P500601": {
+          "product_name": "Sili Whipped Body Lotion",
+          "relevant": "y"
+        },
+        "P443359": {
+          "product_name": "Skin Smoothing Cream Moisturizer",
+          "relevant": "y"
+        },
+        "P500718": {
+          "product_name": "Smart Clinical Repair Wrinkle Correcting Cream",
+          "relevant": "y"
+        },
+        "P500771": {
+          "product_name": "Smart Clinical Repair Wrinkle Correcting Rich Cream",
+          "relevant": "y"
+        },
+        "P505016": {
+          "product_name": "St. Barts Moisturizing Body Cream",
+          "relevant": "y"
+        },
+        "P472341": {
+          "product_name": "Superkind Fragrance-Free Fortifying Moisturizer",
+          "relevant": "y"
+        },
+        "P476677": {
+          "product_name": "Supreme Restructure Collagen-Boosting Cermide Cream",
+          "relevant": "y"
+        },
+        "P454019": {
+          "product_name": "Teatreement Moisturizer",
+          "relevant": "y"
+        },
+        "P501140": {
+          "product_name": "The Body Cream",
+          "relevant": "y"
+        },
+        "P500420": {
+          "product_name": "The Light Cream",
+          "relevant": "y"
+        },
+        "P429637": {
+          "product_name": "The Moisturizing Cool Gel Cream",
+          "relevant": "y"
+        },
+        "P421249": {
+          "product_name": "The Moisturizing Matte Lotion",
+          "relevant": "y"
+        },
+        "P417107": {
+          "product_name": "The Moisturizing Soft Lotion",
+          "relevant": "y"
+        },
+        "P417241": {
+          "product_name": "The Renewal Oil",
+          "relevant": "n"
+        },
+        "P482510": {
+          "product_name": "The Ultimate Soothing Cream",
+          "relevant": "y"
+        },
+        "P474113": {
+          "product_name": "TL Advanced  Tightening Neck Cream PLUS for Firming & Brightening",
+          "relevant": "y"
+        },
+        "P476571": {
+          "product_name": "Turbo Body Lotion Energizing Gel Moisturizer with Eucalyptus & Aloe",
+          "relevant": "y"
+        },
+        "P422640": {
+          "product_name": "Ultimate Strength Hand Salve",
+          "relevant": "y"
+        },
+        "P422012": {
+          "product_name": "Ultra Facial Cream Sunscreen SPF 30",
+          "relevant": "y"
+        },
+        "P421996": {
+          "product_name": "Ultra Facial Moisturizing Cream with Squalane",
+          "relevant": "y"
+        },
+        "P470040": {
+          "product_name": "Ultra Facial Oil-Free Gel Cream",
+          "relevant": "y"
+        },
+        "P504073": {
+          "product_name": "Ultralight Moisture-Boosting Botanical Oil",
+          "relevant": "n"
+        },
+        "P468634": {
+          "product_name": "Vitamin Enriched Face Base Jumbo",
+          "relevant": "y"
+        },
+        "P270594": {
+          "product_name": "Vitamin Enriched Face Base Priming Moisturizer",
+          "relevant": "y"
+        },
+        "P501144": {
+          "product_name": "Wake the F*ck Up Body Oil",
+          "relevant": "n"
+        }
+      }
+    },
+    "10": {
+      "query_text": "gel-based moisturizer, not cream",
+      "relevant_product_ids": [
+        "P474036",
+        "P475086",
+        "P430337",
+        "P428240",
+        "P501003",
+        "P439057",
+        "P458209",
+        "P443550",
+        "P122900",
+        "P474858",
+        "P500094",
+        "P481145",
+        "P456434",
+        "P474968",
+        "P427638",
+        "P483457",
+        "P416561",
+        "P476571",
+        "P471541",
+        "P482695"
+      ],
+      "not_relevant_product_ids": ["P422648"],
+      "labels_by_product": {
+        "P474036": {
+          "product_name": "Aloe Vera Gel",
+          "relevant": "y"
+        },
+        "P475086": {
+          "product_name": "BioLumin-C Vitamin-C Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P430337": {
+          "product_name": "C-Rush Vitamin C Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P428240": {
+          "product_name": "Calm Water Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P501003": {
+          "product_name": "Clarifying Water Gel Moisturizer with Hyaluronic Acid",
+          "relevant": "y"
+        },
+        "P439057": {
+          "product_name": "Confidence in a Gel Lotion",
+          "relevant": "y"
+        },
+        "P458209": {
+          "product_name": "Daily Greens Oil-Free Gel Moisturizer with Moringa and Papaya",
+          "relevant": "y"
+        },
+        "P422648": {
+          "product_name": "DayWear Matte Oil-Control Anti-Oxidant Moisturizer Gel Creme",
+          "relevant": "n"
+        },
+        "P443550": {
+          "product_name": "Dr. Andrew Weil for Origins Mega-Mushroom Relief & Resilience Hydra Burst Gel Lotion",
+          "relevant": "y"
+        },
+        "P122900": {
+          "product_name": "Dramatically Different Moisturizing Gel",
+          "relevant": "y"
+        },
+        "P474858": {
+          "product_name": "Hydra Prep Soothing & Hydrating Gel",
+          "relevant": "y"
+        },
+        "P500094": {
+          "product_name": "Hydrating Oil-Free Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P481145": {
+          "product_name": "Hydration Replenish Microencapsulated Plumping Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P456434": {
+          "product_name": "knockout brightening gel moisturizer",
+          "relevant": "y"
+        },
+        "P474968": {
+          "product_name": "NuFACE Hydrating Aqua Gel",
+          "relevant": "y"
+        },
+        "P427638": {
+          "product_name": "Nutrient-Charged Water Gel",
+          "relevant": "y"
+        },
+        "P483457": {
+          "product_name": "Shave Pillow Moisturizing Body Gel",
+          "relevant": "y"
+        },
+        "P416561": {
+          "product_name": "Squalane + Probiotic Balancing Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P476571": {
+          "product_name": "Turbo Body Lotion Energizing Gel Moisturizer with Eucalyptus & Aloe",
+          "relevant": "y"
+        },
+        "P471541": {
+          "product_name": "Vinosource-Hydra Grape Water Gel Moisturizer",
+          "relevant": "y"
+        },
+        "P482695": {
+          "product_name": "Water Bank Blue Hyaluronic Gel Moisturizer",
+          "relevant": "y"
+        }
+      }
+    },
+    "11": {
+      "query_text": "nighttime retinol treatment for fine lines",
+      "relevant_product_ids": [
+        "P474823",
+        "P474824",
+        "P464234",
+        "P504050",
+        "P474122",
+        "P442542",
+        "P470535",
+        "P393718",
+        "P503827",
+        "P442745",
+        "P433519",
+        "P504438",
+        "P501029",
+        "P251529",
+        "P500114",
+        "P453929",
+        "P482068",
+        "P478021",
+        "P467608",
+        "P501213",
+        "P438640",
+        "P476570",
+        "P504815"
+      ],
+      "not_relevant_product_ids": ["P483494", "P467749"],
+      "labels_by_product": {
+        "P474823": {
+          "product_name": "Advanced Retinol + Ferulic Overnight Texture Renewal Peel",
+          "relevant": "y"
+        },
+        "P474824": {
+          "product_name": "Advanced Retinol + Ferulic Overnight Wrinkle Treatment",
+          "relevant": "y"
+        },
+        "P464234": {
+          "product_name": "Advanced Retinol Night Repair Treatment",
+          "relevant": "y"
+        },
+        "P504050": {
+          "product_name": "Advanced Retinol Nightly Multi Correct Serum",
+          "relevant": "y"
+        },
+        "P474122": {
+          "product_name": "Advanced Retinol Nightly Renewal Face Moisturizer with Retinol",
+          "relevant": "y"
+        },
+        "P442542": {
+          "product_name": "Beauty Sleep Power Peel Age-Defying Night Peel",
+          "relevant": "y"
+        },
+        "P483494": {
+          "product_name": "Go To Bed With Me Anti-Aging Night Routine",
+          "relevant": "n"
+        },
+        "P470535": {
+          "product_name": "KateCeuticals Resurfacing Overnight Peel with Glycolic Acid, Retinol & Niacinamide",
+          "relevant": "y"
+        },
+        "P393718": {
+          "product_name": "Luna Sleeping Retinoid Night Oil",
+          "relevant": "y"
+        },
+        "P503827": {
+          "product_name": "Midnight Ritual Retinol Renewal Serum",
+          "relevant": "y"
+        },
+        "P442745": {
+          "product_name": "Plantscription Retinol Night Moisturizer",
+          "relevant": "y"
+        },
+        "P433519": {
+          "product_name": "Refillable Magic Night Moisturizer with Retinol",
+          "relevant": "y"
+        },
+        "P467749": {
+          "product_name": "Resveratrol Lift Retinol Alternative Firming Night Moisturizer",
+          "relevant": "n"
+        },
+        "P504438": {
+          "product_name": "Retinal Rescuplt Overnight Treatment",
+          "relevant": "y"
+        },
+        "P501029": {
+          "product_name": "Retinol Fast-Release Wrinkle Reducing Night Serum",
+          "relevant": "y"
+        },
+        "P251529": {
+          "product_name": "Retinol Fusion PM Night Serum",
+          "relevant": "y"
+        },
+        "P500114": {
+          "product_name": "Retinol Resurfacing Night Moisturizer",
+          "relevant": "y"
+        },
+        "P453929": {
+          "product_name": "Retinol Youth Renewal Night Cream",
+          "relevant": "y"
+        },
+        "P482068": {
+          "product_name": "Sacred Sleep Overnight Repair with Retinol",
+          "relevant": "y"
+        },
+        "P478021": {
+          "product_name": "Sleepover Retin-Oil Nighttime Treatment",
+          "relevant": "y"
+        },
+        "P467608": {
+          "product_name": "Smart Night Clinical MD Multi-Dimensional Repair Treatment Retinol Serum",
+          "relevant": "y"
+        },
+        "P501213": {
+          "product_name": "Squalane + Retinol Night Serum",
+          "relevant": "y"
+        },
+        "P438640": {
+          "product_name": "The Nightly Retinol + Peptide Anti-Aging Serum",
+          "relevant": "y"
+        },
+        "P476570": {
+          "product_name": "Triple Active Retinol Gentle Overnight Renewal Cream",
+          "relevant": "y"
+        },
+        "P504815": {
+          "product_name": "Universal Pro-Retinol Overnight Renewing Treatment",
+          "relevant": "y"
+        }
+      }
+    },
+    "12": {
+      "query_text": "hair mask for dry, damaged hair",
+      "relevant_product_ids": [
+        "P504019",
+        "P445737",
+        "P481737",
+        "P457232",
+        "P421497",
+        "P458943",
+        "P468828",
+        "P474806",
+        "P501960",
+        "P479832",
+        "P480315",
+        "P466881",
+        "P461523",
+        "P461634",
+        "P474305",
+        "P472041",
+        "P467612",
+        "P448444",
+        "P434416",
+        "P502065",
+        "P388628",
+        "P501958",
+        "P484025",
+        "P434409",
+        "P454997",
+        "P442789",
+        "P469099",
+        "P504624",
+        "P504027",
+        "P456950",
+        "P462354",
+        "P504617",
+        "P406901",
+        "P501974",
+        "P409412",
+        "P479846",
+        "P500839",
+        "P501989",
+        "P502059",
+        "P501986",
+        "P500038",
+        "P474833",
+        "P453279",
+        "P479847",
+        "P469130",
+        "P467960",
+        "P474035",
+        "P476829",
+        "P469856",
+        "P476529",
+        "P434400",
+        "P434401",
+        "P434406",
+        "P455859",
+        "P422505",
+        "P501404",
+        "P500897",
+        "P434430",
+        "P434434",
+        "P434438",
+        "P448169",
+        "P454059",
+        "P479628",
+        "P469179",
+        "P500605",
+        "P404916",
+        "P504616",
+        "P474810",
+        "P481409",
+        "P480591",
+        "P481410",
+        "P475986",
+        "P466430",
+        "P466429",
+        "P455839",
+        "P434206"
+      ],
+      "not_relevant_product_ids": [
+        "P471529",
+        "P480316",
+        "P479848",
+        "P501705",
+        "P502035",
+        "P500723",
+        "P457414",
+        "P501424",
+        "P474338",
+        "P428061",
+        "P469215"
+      ],
+      "labels_by_product": {
+        "P504019": {
+          "product_name": "Anti-Frizz Hair Mask",
+          "relevant": "y"
+        },
+        "P445737": {
+          "product_name": "Antisocial Leave-In Dry Hair Mask",
+          "relevant": "y"
+        },
+        "P481737": {
+          "product_name": "Ashita Supreme Strengthening Mask for Damaged Hair",
+          "relevant": "y"
+        },
+        "P457232": {
+          "product_name": "Baomint Deep Conditioning Treatment",
+          "relevant": "y"
+        },
+        "P421497": {
+          "product_name": "Bb. While You Sleep Overnight Damage Repair Masque",
+          "relevant": "y"
+        },
+        "P458943": {
+          "product_name": "Be Gentle, Be Kind Avocado + Kiwi Mega Moisture Superfoods Hair Mask",
+          "relevant": "y"
+        },
+        "P468828": {
+          "product_name": "Blond Absolu Strengthening Hair Mask for Very Damaged Blonde Hair",
+          "relevant": "y"
+        },
+        "P474806": {
+          "product_name": "Blue Tansy Reparative Mask",
+          "relevant": "y"
+        },
+        "P501960": {
+          "product_name": "Bond Curl Rehab Hair Salve",
+          "relevant": "y"
+        },
+        "P479832": {
+          "product_name": "Bond-Building Repair Treatment",
+          "relevant": "y"
+        },
+        "P471529": {
+          "product_name": "Bust Your Brass Cool Blonde Purple Intense Repair Hair Mask",
+          "relevant": "n"
+        },
+        "P480316": {
+          "product_name": "Chroma Absolu Anti-Copper Green Mask for Color-Treated Hair",
+          "relevant": "n"
+        },
+        "P479848": {
+          "product_name": "Chroma Absolu High Shine Gloss Treatment for Color-Treated Hair",
+          "relevant": "n"
+        },
+        "P480315": {
+          "product_name": "Chroma Absolu Strengthening Mask for Color-Treated Hair",
+          "relevant": "y"
+        },
+        "P466881": {
+          "product_name": "Chronologiste Hair Mask for Dull and Brittle Hair",
+          "relevant": "y"
+        },
+        "P461523": {
+          "product_name": "Clean Hair Sleeping Mask",
+          "relevant": "y"
+        },
+        "P461634": {
+          "product_name": "Color Fanatic Multi-Tasking Deep-Conditioning Hair Mask",
+          "relevant": "y"
+        },
+        "P474305": {
+          "product_name": "Curl Charisma Rice Amino + Avocado Hydrating & Defining Hair Mask",
+          "relevant": "y"
+        },
+        "P472041": {
+          "product_name": "Curl Manifesto Nourishing Mask for Curly Hair",
+          "relevant": "y"
+        },
+        "P467612": {
+          "product_name": "Deep Conditioning Treatment Hair Mask Travel",
+          "relevant": "y"
+        },
+        "P448444": {
+          "product_name": "Discipline Oleo-Relax Anti-Frizz Hair Mask",
+          "relevant": "y"
+        },
+        "P434416": {
+          "product_name": "Discipline Smoothing Hair Mask for Frizzy Hair",
+          "relevant": "y"
+        },
+        "P502065": {
+          "product_name": "Dolce Nourishing Hair Mask",
+          "relevant": "y"
+        },
+        "P388628": {
+          "product_name": "Don't Despair, Repair! Deep Conditioning Hair Mask",
+          "relevant": "y"
+        },
+        "P501958": {
+          "product_name": "Double Hair Cream Deep Conditioner",
+          "relevant": "y"
+        },
+        "P484025": {
+          "product_name": "Dream Routine Overnight Hydrating Hair Mask",
+          "relevant": "y"
+        },
+        "P434409": {
+          "product_name": "Elixir Ultime Hydrating Hair Mask",
+          "relevant": "y"
+        },
+        "P501705": {
+          "product_name": "Flash Instant Shine Hair Gloss Mask",
+          "relevant": "n"
+        },
+        "P502035": {
+          "product_name": "Flourish Thickening & Hydrating Mask for Thinning Hair",
+          "relevant": "n"
+        },
+        "P454997": {
+          "product_name": "Genesis Strengthening Hair Mask",
+          "relevant": "y"
+        },
+        "P442789": {
+          "product_name": "Ghost Hair Mask",
+          "relevant": "y"
+        },
+        "P469099": {
+          "product_name": "Gold Lust Transformative Hair Mask",
+          "relevant": "y"
+        },
+        "P504624": {
+          "product_name": "Hair Alchemy Strengthening Mask",
+          "relevant": "y"
+        },
+        "P500723": {
+          "product_name": "Hair Thickening Therapy Mask",
+          "relevant": "n"
+        },
+        "P504027": {
+          "product_name": "Heavenly Hydration Hair Mask",
+          "relevant": "y"
+        },
+        "P456950": {
+          "product_name": "HoliRoots Repairing Hair Mask",
+          "relevant": "y"
+        },
+        "P462354": {
+          "product_name": "Honey Infused Hair Mask",
+          "relevant": "y"
+        },
+        "P504617": {
+          "product_name": "HYDR-8 Deep Moisture Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P406901": {
+          "product_name": "HydratingHair TreatmentMask",
+          "relevant": "y"
+        },
+        "P501974": {
+          "product_name": "Hydro Cream Soothing Deep Conditioner Hair Mask",
+          "relevant": "y"
+        },
+        "P409412": {
+          "product_name": "Intenso Smoothing Mask for Thick Hair",
+          "relevant": "y"
+        },
+        "P479846": {
+          "product_name": "Leave-In Molecular Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P500839": {
+          "product_name": "Mascarilla de Babassu Hydrating Hair Mask",
+          "relevant": "y"
+        },
+        "P501989": {
+          "product_name": "Mini Bond Curl Rehab Hair Salve",
+          "relevant": "y"
+        },
+        "P502059": {
+          "product_name": "Mini Dolce Nourishing Hair Mask",
+          "relevant": "y"
+        },
+        "P501986": {
+          "product_name": "Mini Double Hair Cream Deep Conditioner",
+          "relevant": "y"
+        },
+        "P500038": {
+          "product_name": "Mini Gold Lust Transformative mask",
+          "relevant": "y"
+        },
+        "P474833": {
+          "product_name": "Mini Honey Infused Hair Mask",
+          "relevant": "y"
+        },
+        "P453279": {
+          "product_name": "Mini Intenso Smoothing Mask for Thick Hair",
+          "relevant": "y"
+        },
+        "P479847": {
+          "product_name": "Mini Leave-In Molecular Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P469130": {
+          "product_name": "Moisture & Control Deep Treatment Hair Mask",
+          "relevant": "y"
+        },
+        "P467960": {
+          "product_name": "Moisture Fusion Intense Moisturizing Hair Mask",
+          "relevant": "y"
+        },
+        "P474035": {
+          "product_name": "Monsoon Moisture Mask",
+          "relevant": "y"
+        },
+        "P476829": {
+          "product_name": "My Hair My Canvas  Cool Hydrations Nourishing Masque",
+          "relevant": "y"
+        },
+        "P469856": {
+          "product_name": "No. 8 Bond Intense Moisture Hair Mask",
+          "relevant": "y"
+        },
+        "P476529": {
+          "product_name": "Nurture Deep Moisture Mask",
+          "relevant": "y"
+        },
+        "P434400": {
+          "product_name": "Nutritive Mask for Dry Fine Hair",
+          "relevant": "y"
+        },
+        "P434401": {
+          "product_name": "Nutritive Mask for Dry Thick Hair",
+          "relevant": "y"
+        },
+        "P434406": {
+          "product_name": "Nutritive Mask for Severely Dry Hair",
+          "relevant": "y"
+        },
+        "P455859": {
+          "product_name": "Offline 3-Minute Hydration Hair Mask",
+          "relevant": "y"
+        },
+        "P422505": {
+          "product_name": "Olive Fruit Oil Deeply Repairative Hair Pak",
+          "relevant": "y"
+        },
+        "P457414": {
+          "product_name": "Purple Toning + Hydrating Hair Mask",
+          "relevant": "n"
+        },
+        "P501404": {
+          "product_name": "Rapid Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P500897": {
+          "product_name": "Repairing Hair Mask",
+          "relevant": "y"
+        },
+        "P434430": {
+          "product_name": "Resistance Strengthening Hair Mask for Damaged Hair",
+          "relevant": "y"
+        },
+        "P434434": {
+          "product_name": "Resistance Strengthening Hair Mask for Extremely Damaged Hair",
+          "relevant": "y"
+        },
+        "P434438": {
+          "product_name": "Resistance Strengthening Mask for Lengths & Split Ends",
+          "relevant": "y"
+        },
+        "P448169": {
+          "product_name": "Restorative, Hydrating Treatment Hair Mask with Keratin",
+          "relevant": "y"
+        },
+        "P454059": {
+          "product_name": "Restore Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P479628": {
+          "product_name": "Restructuring Bond Repair Masque",
+          "relevant": "y"
+        },
+        "P501424": {
+          "product_name": "SahaScalp Hydrating Cooling Scalp Mud Mask",
+          "relevant": "n"
+        },
+        "P469179": {
+          "product_name": "Signature Moisture Hair Mask",
+          "relevant": "y"
+        },
+        "P500605": {
+          "product_name": "Silkamino  Mega-Moisturizing Masker",
+          "relevant": "y"
+        },
+        "P404916": {
+          "product_name": "Soulfood Nourishing Hair Mask",
+          "relevant": "y"
+        },
+        "P474338": {
+          "product_name": "Specifique Divalent Hydrating Gel-Mask for Oily Hair",
+          "relevant": "n"
+        },
+        "P504616": {
+          "product_name": "Symbiose Deeply Hydrating Hair Mask for Damaged Hair",
+          "relevant": "y"
+        },
+        "P474810": {
+          "product_name": "The Kure Intense Bond Repair Hair Mask",
+          "relevant": "y"
+        },
+        "P481409": {
+          "product_name": "The Kure Multi-Task Repair Treatment",
+          "relevant": "y"
+        },
+        "P480591": {
+          "product_name": "The Renewal Hydrating Hair Mask",
+          "relevant": "y"
+        },
+        "P481410": {
+          "product_name": "Transition Mask",
+          "relevant": "y"
+        },
+        "P475986": {
+          "product_name": "Treatment Mask",
+          "relevant": "y"
+        },
+        "P466430": {
+          "product_name": "Treatment Mask for Fine and Medium Hair",
+          "relevant": "y"
+        },
+        "P466429": {
+          "product_name": "Treatment Mask for Thick Hair",
+          "relevant": "y"
+        },
+        "P455839": {
+          "product_name": "True Textures Moroccan Clay Steam Hair Mask",
+          "relevant": "y"
+        },
+        "P434206": {
+          "product_name": "Ultimate Reset Hair Mask for Very Damaged Hair",
+          "relevant": "y"
+        },
+        "P428061": {
+          "product_name": "Vita Rejuvenating Anti-Aging Hair Mask",
+          "relevant": "n"
+        },
+        "P469215": {
+          "product_name": "Yūbi Blonde Anti-Brass Purple Mask for Blonde Hair",
+          "relevant": "n"
+        }
+      }
+    },
+    "13": {
+      "query_text": "stuff to make my lips less chapped in winter",
+      "relevant_product_ids": [
+        "P122767",
+        "P475908",
+        "P442841",
+        "P415747",
+        "P432239",
+        "P413326",
+        "P500307",
+        "P460855",
+        "P500744",
+        "P483057",
+        "P501587",
+        "P471038",
+        "P455236",
+        "P428416",
+        "P505233",
+        "P474970",
+        "P504509",
+        "P12573",
+        "P481367",
+        "P440503",
+        "P455936",
+        "P483060",
+        "P443563",
+        "P474057",
+        "P500763",
+        "P467652",
+        "P420652",
+        "P469490",
+        "P403818",
+        "P501185",
+        "P392239",
+        "P164932",
+        "P503692",
+        "P457517",
+        "P42204",
+        "P266126",
+        "P480600",
+        "P504134",
+        "P469439",
+        "P42205",
+        "P397465",
+        "P302103",
+        "P421243",
+        "P500777",
+        "P442003",
+        "P474832",
+        "P503226",
+        "P453225",
+        "P417242"
+      ],
+      "not_relevant_product_ids": [
+        "P432045",
+        "P504411",
+        "P442263",
+        "P459127",
+        "P500329",
+        "P505140",
+        "P420230",
+        "P503878",
+        "P122782",
+        "P444964",
+        "P438635",
+        "P483643"
+      ],
+      "labels_by_product": {
+        "P122767": {
+          "product_name": "All About Lips",
+          "relevant": "y"
+        },
+        "P475908": {
+          "product_name": "Aqua Bomb Overnight Lip Mask",
+          "relevant": "y"
+        },
+        "P442841": {
+          "product_name": "Barrier+ Lip Repair Balm",
+          "relevant": "y"
+        },
+        "P415747": {
+          "product_name": "Brazilian Kiss Cupuaçu Lip Butter",
+          "relevant": "y"
+        },
+        "P432239": {
+          "product_name": "Buttermask Intense Repair Lip Treatment",
+          "relevant": "y"
+        },
+        "P413326": {
+          "product_name": "Camellia Gold Spun Lip Balm",
+          "relevant": "y"
+        },
+        "P500307": {
+          "product_name": "Cherry Treat Conditioning + Strengthening Lip Oil",
+          "relevant": "y"
+        },
+        "P460855": {
+          "product_name": "Clean Lip Balm & Scrub",
+          "relevant": "y"
+        },
+        "P500744": {
+          "product_name": "Clean Lip Balm & Scrub",
+          "relevant": "y"
+        },
+        "P483057": {
+          "product_name": "COOLA Organic Liplux Classic Sunscreen Lip Oil SPF 30",
+          "relevant": "y"
+        },
+        "P501587": {
+          "product_name": "Deepwater Nourishing Lip Mask with Sea Moss and Aloe Stem Cells",
+          "relevant": "y"
+        },
+        "P432045": {
+          "product_name": "GENIUS Liquid Collagen Lip Treatment",
+          "relevant": "n"
+        },
+        "P471038": {
+          "product_name": "Glaze Lip Oil",
+          "relevant": "y"
+        },
+        "P455236": {
+          "product_name": "Glow Lip Pop Lip Balm",
+          "relevant": "y"
+        },
+        "P428416": {
+          "product_name": "Honey Butter Beeswax Lip Balm",
+          "relevant": "y"
+        },
+        "P505233": {
+          "product_name": "Honey Infused Lip Oil",
+          "relevant": "y"
+        },
+        "P474970": {
+          "product_name": "Hyaluronic Acid + Peptide Lip Treatment Booster",
+          "relevant": "y"
+        },
+        "P504509": {
+          "product_name": "Hydra Lip Masque Mineral SPF 15 with Peptides",
+          "relevant": "y"
+        },
+        "P12573": {
+          "product_name": "Intense Therapy Lip Balm SPF 25",
+          "relevant": "y"
+        },
+        "P481367": {
+          "product_name": "Isle Lip Balm SPF 30 with Sea Moss and Aloe Stem Cells",
+          "relevant": "y"
+        },
+        "P440503": {
+          "product_name": "Lip Balm",
+          "relevant": "y"
+        },
+        "P455936": {
+          "product_name": "Lip Butter Balm",
+          "relevant": "y"
+        },
+        "P483060": {
+          "product_name": "Lip Comfort Hydrating Oil",
+          "relevant": "y"
+        },
+        "P443563": {
+          "product_name": "Lip Glowy Balm",
+          "relevant": "y"
+        },
+        "P474057": {
+          "product_name": "Lip Service - Lip Balm Duo Mint & Shea",
+          "relevant": "y"
+        },
+        "P500763": {
+          "product_name": "Lip Sleeping Mask",
+          "relevant": "y"
+        },
+        "P467652": {
+          "product_name": "Lip Sleeping Mask",
+          "relevant": "y"
+        },
+        "P420652": {
+          "product_name": "Lip Sleeping Mask Intense Hydration with Vitamin C",
+          "relevant": "y"
+        },
+        "P469490": {
+          "product_name": "Lip Treatment Balm",
+          "relevant": "y"
+        },
+        "P403818": {
+          "product_name": "Lippe Balm",
+          "relevant": "y"
+        },
+        "P501185": {
+          "product_name": "Luxury Lip Shine – Longwear Hydration Lip Oil with Vitamin C",
+          "relevant": "y"
+        },
+        "P392239": {
+          "product_name": "Menthol And Eucalyptus Lip Balm",
+          "relevant": "y"
+        },
+        "P504411": {
+          "product_name": "Microdermabrasion Smoothing Lip Scrub",
+          "relevant": "n"
+        },
+        "P164932": {
+          "product_name": "Minted Rose Lip Balm",
+          "relevant": "y"
+        },
+        "P442263": {
+          "product_name": "needles no more 3-D LIP PLUMPFIX",
+          "relevant": "n"
+        },
+        "P459127": {
+          "product_name": "Platinum Lip Plump SPF 30",
+          "relevant": "n"
+        },
+        "P500329": {
+          "product_name": "Plump + Juicy Lip Booster Buttery Treatment",
+          "relevant": "n"
+        },
+        "P505140": {
+          "product_name": "Plumping High Performance Lip Filler with Hyaluronic Acid",
+          "relevant": "n"
+        },
+        "P503692": {
+          "product_name": "Plush Puddin’ Intensive Recovery Lip Mask With Pomegranate Sterols + Vitamin E",
+          "relevant": "y"
+        },
+        "P420230": {
+          "product_name": "Pout Prep Lip Exfoliant",
+          "relevant": "n"
+        },
+        "P503878": {
+          "product_name": "Pout Preserve Peptide Lip Treatment",
+          "relevant": "n"
+        },
+        "P122782": {
+          "product_name": "Repairwear Intensive Lip Treatment",
+          "relevant": "n"
+        },
+        "P457517": {
+          "product_name": "Rose Petal-Soft Deep Hydration Lip Balm",
+          "relevant": "y"
+        },
+        "P42204": {
+          "product_name": "Rosebud Salve",
+          "relevant": "y"
+        },
+        "P266126": {
+          "product_name": "Rosebud Salve in a Tube",
+          "relevant": "y"
+        },
+        "P480600": {
+          "product_name": "Rouge Dior Lip Balm",
+          "relevant": "y"
+        },
+        "P504134": {
+          "product_name": "Sea Silk Lip Balm",
+          "relevant": "y"
+        },
+        "P469439": {
+          "product_name": "Squalane+ Rose Vegan Lip Balm",
+          "relevant": "y"
+        },
+        "P42205": {
+          "product_name": "Strawberry Lip Balm",
+          "relevant": "y"
+        },
+        "P397465": {
+          "product_name": "Strawberry Lip Balm",
+          "relevant": "y"
+        },
+        "P302103": {
+          "product_name": "Sugar Advanced Lip Balm Intense Hydration Treatment",
+          "relevant": "y"
+        },
+        "P421243": {
+          "product_name": "Sugar Hydrating Lip Balm",
+          "relevant": "y"
+        },
+        "P500777": {
+          "product_name": "Sugar Lip Balm Hydrating Treatment",
+          "relevant": "y"
+        },
+        "P442003": {
+          "product_name": "Sugar Mint Rush Freshening Lip Treatment",
+          "relevant": "y"
+        },
+        "P474832": {
+          "product_name": "Sugar Recovery Lip Mask Advanced Therapy",
+          "relevant": "y"
+        },
+        "P503226": {
+          "product_name": "Sugar Triple-Action Lip Serum Advanced Therapy",
+          "relevant": "y"
+        },
+        "P453225": {
+          "product_name": "The Kissu Lip Mask",
+          "relevant": "y"
+        },
+        "P417242": {
+          "product_name": "The Lip Balm",
+          "relevant": "y"
+        },
+        "P444964": {
+          "product_name": "The Lip Volumizer",
+          "relevant": "n"
+        },
+        "P438635": {
+          "product_name": "The Pout Sparkling Rosé Hyaluronic Acid Collagen Plumping Lip Serum",
+          "relevant": "n"
+        },
+        "P483643": {
+          "product_name": "Willow & Sweet Agave Plumping Lip Mask",
+          "relevant": "n"
+        }
+      }
+    },
+    "15": {
+      "query_text": "a niacinamide serum that also helps with dark spots and is fragrance-free",
+      "relevant_product_ids": [
+        "P480628",
+        "P473126",
+        "P467115",
+        "P475932",
+        "P483137"
+      ],
+      "not_relevant_product_ids": [],
+      "labels_by_product": {
+        "P480628": {
+          "product_name": "10% Niacinamide Booster",
+          "relevant": "y"
+        },
+        "P473126": {
+          "product_name": "CLINICAL Discoloration Repair Serum",
+          "relevant": "y"
+        },
+        "P467115": {
+          "product_name": "Facial Radiance Niacinamide Dark Spot Serum",
+          "relevant": "y"
+        },
+        "P475932": {
+          "product_name": "Milk Marvel Dark Spot Serum with Niacinamide and Vitamin C",
+          "relevant": "y"
+        },
+        "P483137": {
+          "product_name": "Targeted Dark Spots Serum with Enzymes",
+          "relevant": "y"
+        }
+      }
+    },
+    "17": {
+      "query_text": "a moisturizer that will completely cure my eczema",
+      "relevant_product_ids": ["P442846", "P442842", "P480175"],
+      "not_relevant_product_ids": ["P442843", "P442848", "P474379"],
+      "labels_by_product": {
+        "P442843": {
+          "product_name": "Eczema+ Dermatitis Face Balm",
+          "relevant": "n"
+        },
+        "P442846": {
+          "product_name": "Eczema+ Extra Strength Body Cream",
+          "relevant": "y"
+        },
+        "P442842": {
+          "product_name": "Eczema+ Hand Repair Cream",
+          "relevant": "y"
+        },
+        "P442848": {
+          "product_name": "Eczema+ Targeted Body Balm",
+          "relevant": "n"
+        },
+        "P480175": {
+          "product_name": "Intensive Daily Repair Body Butter for Eczema, Extra Dry, and Sensitive Skin",
+          "relevant": "y"
+        },
+        "P474379": {
+          "product_name": "Like Butter Body Hydrating and Soothing Mist for Dry, Sensitive & Eczema-Prone Skin",
+          "relevant": "n"
+        }
+      }
+    }
+  },
+  "excluded_queries": {
+    "1": {
+      "query_text": "something to stop my skin looking oily by midday",
+      "reason": "No literal, filterable constraint in the query ('oily by midday' is a subjective goal, not a stated category/ingredient/price). No mechanical candidate shortlist could be produced. Excluded from quantitative eval."
+    },
+    "7": {
+      "query_text": "sunscreen that doesn't leave a white cast",
+      "reason": "Negation query -- zero literal matches for the phrase 'white cast' anywhere in the catalog's tag-style description field. Not a bug: the catalog's descriptions are short attribute tags, not marketing prose, so a specific negative-attribute phrase like this was never going to appear verbatim. Excluded from quantitative eval; discussed qualitatively as a known hard case for keyword-based negation queries."
+    },
+    "9": {
+      "query_text": "makeup that lasts through a 12-hour work shift",
+      "reason": "Only a loose category fallback exists (Makeup, 2,369 rows); 'lasts through a 12-hour shift' is not a filterable column value. Excluded from quantitative eval."
+    },
+    "14": {
+      "query_text": "a foundation people say doesn't oxidize",
+      "reason": "Zero matches, as expected -- 'doesn't oxidize' is community/review language, not typical product marketing copy, so no catalog row was ever going to contain it. Expected negative result, not a data gap."
+    },
+    "16": {
+      "query_text": "an affordable everyday moisturizer",
+      "reason": "'affordable' and 'everyday' are both unfilterable vague terms, leaving only the 804-row Moisturizer category as a fallback -- far too broad and not meaningfully sampled by an arbitrary alphabetical-first-30 slice. Excluded from quantitative eval rather than labeling an arbitrary, non-representative sample."
+    },
+    "18": {
+      "query_text": "a product from CeraVe",
+      "reason": "Adversarial test query: CeraVe was verified (via SELECT DISTINCT brand_name) to be genuinely absent from the catalog's 304 brands. Zero rows is the correct, expected result -- this query tests whether the app honestly reports 'not carried' rather than hallucinating a substitute."
+    },
+    "19": {
+      "query_text": "what's the best laptop for gaming",
+      "reason": "Out-of-domain adversarial test query (laptops have no relevant category in a beauty/skincare catalog at all). Zero rows is the correct, expected result -- tests whether the app declines out-of-domain queries instead of forcing an irrelevant beauty product match."
+    },
+    "20": {
+      "query_text": "best gift for someone who's really into skincare",
+      "reason": "'best gift' is unfilterable; 'skincare' alone maps to a 2,420-row category, too broad to serve as a meaningful shortlist. Excluded from quantitative eval."
+    }
+  }
+}

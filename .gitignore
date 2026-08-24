@@ -11,3 +11,4 @@ data/raw/
 data/*.csv
 data/*.zip
 .DS_Store
+eval/candidate_shortlist.md
