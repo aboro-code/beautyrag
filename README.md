@@ -15,11 +15,11 @@ the first request).
 
 ```mermaid
 flowchart LR
-    U[User / Postman / Streamlit UI] --> API[FastAPI async backend]
-    API --> P[(Postgres + pgvector<br/>products + reviews + embeddings)]
-    API --> R[(Redis<br/>ask-response cache + rate limiter)]
-    API --> G[Groq LLM<br/>openai/gpt-oss-20b]
-    API --> E[Local embedding model<br/>sentence-transformers MiniLM-L6-v2]
+    U[User] --> API[FastAPI Backend]
+    API --> P[Postgres and pgvector]
+    API --> R[Redis Cache]
+    API --> G[Groq LLM]
+    API --> E[Embedding Model]
 ```
 
 One database for everything: `products` and `reviews` tables in Postgres, with a
